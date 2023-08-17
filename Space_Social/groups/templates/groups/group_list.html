@@ -3,15 +3,15 @@
 {% block pregroup %}
     <div class="col-md-4">
         <div class="content">
-            {% if user.is_authenicated %}
+            {% if user.is_authenticated %}
                 <h2>Welcome Back!
-                    <a href="{% url posts:for_user username=user.username %}">@{{ user.username }}</a>
+                    <a href="{% url 'posts:for_user' username=user.username %}">@{{ user.username }}</a>
                 </h2>
             {% endif %}
             <h2>Groups</h2>
             <p>Welcome to groups page</p>
         </div>
-        {% if user.is_authenicated %}
+        {% if user.is_authenticated %}
         <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-fill btn-default">
             <span class="material-icons-sharp">add</span>Create Group
         </a>

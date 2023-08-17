@@ -7,6 +7,9 @@
 <form action="{% url 'groups:create' %}" method="POST" id="groupForm">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <input class="btn btn-lg btn-primary" value="Create" type="submit">
+    {% buttons %}
+  		<button type="submit" class="btn btn-primary btn-large">Create</button>
+  	{% endbuttons %}
+<!--    <input class="btn btn-lg btn-primary" value="Create" type="submit">-->
 </form>
 {% endblock %} 

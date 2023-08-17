@@ -12,20 +12,20 @@
     <link rel="stylesheet" href="{% static 'css/master.css' %}">
 </head>
 <body>
-    <nav class="navbar bg-dark  mynav">
+    <nav class="navbar  mynav">
         <div class="container-fluid">
             <a class="navbar-brand  mynav " href="{% url 'home' %}">Space Social</a>
 
             <ul class="nav justify-content-end">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Post</a>
+                        <a class="nav-link" href="{% url 'posts:create' %}">Post</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Group</a>
+                        <a class="nav-link" href="{% url 'groups:all' %}">Groups</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Create</a>
+                        <a class="nav-link" href="{% url 'groups:create' %}">Create Group</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'accounts:logout' %}">logout</a>
@@ -33,7 +33,7 @@
                 {% else %}
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Group</a>
+                        <a class="nav-link" href="{% url 'groups:create' %}">Groups</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'accounts:login' %}">login</a>

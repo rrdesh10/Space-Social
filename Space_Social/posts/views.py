@@ -1,13 +1,13 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 from django.http import Http404
-from braces.views import SelectRelatedMixin
 from . import models
 from . import forms
+from braces.views import SelectRelatedMixin
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -35,7 +35,7 @@ class UserPosts(generic.ListView):
     
 class PostDetail(SelectRelatedMixin, generic.DetailView):
     model = models.Post
-    select_related = ('user', group)
+    select_related = ('user', 'group')
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -64,4 +64,4 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
     
     def delete(self, *args, **kwargs):
         messages.success(self.request, 'Post deleted')
-        return super(),delete(*args, **kwargs)
+        return super(), self.delete(*args, **kwargs)
