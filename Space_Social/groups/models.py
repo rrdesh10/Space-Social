@@ -4,14 +4,15 @@ from django.utils.text import slugify
 import mistune
 
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 from django import template
+
 register = template.Library()
 
 
 class Group(models.Model):
-
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(allow_unicode=True, unique=True)
     description = models.TextField(blank=True, default='')
@@ -32,8 +33,8 @@ class Group(models.Model):
     class Meta:
         ordering = ['name']
 
-class GroupMember(models.Model):
 
+class GroupMember(models.Model):
     group = models.ForeignKey(Group, related_name='membership', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='user_groups', on_delete=models.CASCADE)
 
@@ -41,4 +42,4 @@ class GroupMember(models.Model):
         return self.user.username
 
     class Meta:
-        unique_together = ('groups', 'user')
+        unique_together = ('group', 'user')
