@@ -3,18 +3,20 @@
 {% block pregroup %}
 
 <h1>{{ group.name }}</h1>
-<h2>Members : {{ group.members.count }}</h2>
+<h3>Members : {{ group.members.count }}</h3>
 
 <div class="content">
     {% if user in group.members.all %}
 
-        <a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning">
-            <span class="material-icons-sharp">person_remove</span>Leave
-        </a>
+        <br><a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning">
+            Leave <span class="material-icons">person_remove</span>
+        </a><br>
     {% else %}
 
-        <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-fill btn-default">
-            <span class="material-icons-sharp">person_add_alt</span>Join
+        <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-fill btn-primary">
+            Join <span class="material-icons">
+                person_add_alt
+                </span>
         </a>
     {% endif %}
 
@@ -23,12 +25,12 @@
 
 {% block group_content %}
  <div class="col-mb-8">
-    {% if group.posts.all == 0 %}
-        <h2>No posts in this group </h2>
-    {% else %}
+    {% if group.posts.all != 0 %}
         {% for post in group.posts.all %}
             {% include 'posts/_post.html' %}
         {% endfor %}
+    {% else %}
+    <p>No posts in this group </p>
     {% endif %}
  </div>
 {% endblock %}
