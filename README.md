@@ -6,10 +6,10 @@ Signup page
 ![signup](signup.png)
 
 Login page
-![login](login.png)
+![Alt text](login.png)
 
 Groups page
-![Groups page](Groups.png)
+![Groups page](groups.png)
 
 Add-Post page
 ![Add-Post](add-post.png)
